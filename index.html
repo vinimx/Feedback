@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        fundo: '#021526',
+                        primaria: '#03346E', 
+                        secundaria: '#6EACDA',
+                        detalhe: '#2CA9BC',
+                        cor_fonte: '#E2E2B6',
+                        alerta: '#FF7F3E',
+                    },
+                    fontFamily: {
+                        montserrat: ['Montserrat', 'sans-serif']
+                    },
+                    keyframes: {
+                        estrela: {
+                            '0%, 100%': {
+                                transform: 'rotate(-10deg)'
+                            },
+                            '50%': {
+                                transform: 'rotate(10deg)'
+                            }
+                        },
+                        float: {
+                            '0%, 100%': {
+                                transform: 'translateY(0)'
+                            },
+                            '50%': {
+                                transform: 'translateY(-10px)'
+                            }
+                        }
+                    },
+                    animation: {
+                        acao: 'estrela 0.31s ease-in-out infinite',
+                        flutuar: 'float 3s ease-in-out infinite'
+                    }
+                },
+            },
+            plugins: [],
+        }
+    </script>
+</head>
+
+<body class="bg-gradient-to-br from-fundo via-primaria to-fundo text-cor_fonte font-montserrat flex justify-center items-center min-h-screen p-4 sm:p-8">
+    <main class="bg-primaria/90 backdrop-blur-sm rounded-2xl shadow-2xl p-8 flex flex-col text-center max-w-md w-full border border-secundaria/20">
+        <div class="relative group mb-6">
+            <img src="img/star.svg" alt="Estrela" class="w-12 h-12 transition-transform duration-300 hover:animate-acao animate-flutuar">
+        </div>
+        <h1 class="font-semibold text-2xl mb-3">Como foi sua experiência?</h1>
+        <p class="text-secundaria text-base mb-6">Avalie-nos para sabermos como está sendo sua experiência com nossos produtos!</p>
+        
+        <div class="text-secundaria text-xl flex justify-between mb-6">
+            <button class="evento flex items-center justify-center rounded-full bg-fundo/80 hover:bg-detalhe hover:text-fundo transition-all duration-300 w-12 h-12 hover:scale-110 hover:shadow-lg hover:shadow-detalhe/30">1</button>
+            <button class="evento flex items-center justify-center rounded-full bg-fundo/80 hover:bg-detalhe hover:text-fundo transition-all duration-300 w-12 h-12 hover:scale-110 hover:shadow-lg hover:shadow-detalhe/30">2</button>
+            <button class="evento flex items-center justify-center rounded-full bg-fundo/80 hover:bg-detalhe hover:text-fundo transition-all duration-300 w-12 h-12 hover:scale-110 hover:shadow-lg hover:shadow-detalhe/30">3</button>
+            <button class="evento flex items-center justify-center rounded-full bg-fundo/80 hover:bg-detalhe hover:text-fundo transition-all duration-300 w-12 h-12 hover:scale-110 hover:shadow-lg hover:shadow-detalhe/30">4</button>
+            <button class="evento flex items-center justify-center rounded-full bg-fundo/80 hover:bg-detalhe hover:text-fundo transition-all duration-300 w-12 h-12 hover:scale-110 hover:shadow-lg hover:shadow-detalhe/30">5</button>
+        </div>
+
+        <div class="alerta hidden mb-4 text-alerta bg-alerta/10 py-2 px-4 rounded-lg">
+            <p class="font-medium">Avalie antes de enviar.</p>
+        </div>
+
+        <a href="agradecimentos.html" id="enviarButton" aria-label="Botão de enviar avaliação" class="text-lg px-6 py-3 rounded-full flex justify-center bg-fundo hover:bg-detalhe hover:text-fundo transition-all duration-300 font-semibold hover:shadow-lg hover:shadow-detalhe/30 hover:scale-105">Enviar</a>
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const buttons = document.querySelectorAll(".evento");
+            const alerta = document.querySelector(".alerta");
+            const enviarButton = document.querySelector("#enviarButton");
+            let avaliacaoFeita = false;
+
+            buttons.forEach(button => {
+                button.addEventListener("click", () => {
+                    buttons.forEach(btn => {
+                        btn.classList.remove("bg-detalhe", "text-fundo", "scale-110");
+                        btn.classList.add("bg-fundo/80");
+                    });
+                    button.classList.remove("bg-fundo/80");
+                    button.classList.add("bg-detalhe", "text-fundo", "scale-110");
+                    avaliacaoFeita = true;
+                    alerta.classList.add("hidden");
+                });
+            });
+            enviarButton.addEventListener("click", (e) => {
+                if (!avaliacaoFeita) {
+                    e.preventDefault(); 
+                    alerta.classList.remove("hidden");
+                }
+            });
+        });
+    </script>
+    
+</body>
+</html>

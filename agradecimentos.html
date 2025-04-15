@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Obrigado pelo Feedback</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        fundo: '#021526',
+                        primaria: '#03346E', 
+                        secundaria: '#6EACDA',
+                        detalhe: '#2CA9BC',
+                        cor_fonte: '#E2E2B6'
+                    },
+                    fontFamily: {
+                        montserrat: ['Montserrat', 'sans-serif']
+                    },
+                    keyframes: {
+                        estrela: {
+                            '0%, 100%': {
+                                transform: 'rotate(-10deg)'
+                            },
+                            '50%': {
+                                transform: 'rotate(10deg)'
+                            }
+                        },
+                        float: {
+                            '0%, 100%': {
+                                transform: 'translateY(0)'
+                            },
+                            '50%': {
+                                transform: 'translateY(-10px)'
+                            }
+                        },
+                        pulse: {
+                            '0%, 100%': {
+                                transform: 'scale(1)'
+                            },
+                            '50%': {
+                                transform: 'scale(1.1)'
+                            }
+                        }
+                    },
+                    animation: {
+                        acao: 'estrela 0.31s ease-in-out infinite',
+                        flutuar: 'float 3s ease-in-out infinite',
+                        pulsar: 'pulse 2s ease-in-out infinite'
+                    }
+                },
+            },
+            plugins: [],
+        }
+    </script>
+</head>
+
+<body class="bg-gradient-to-br from-fundo via-primaria to-fundo text-cor_fonte font-montserrat flex justify-center items-center min-h-screen p-4 sm:p-8">
+    <main class="bg-primaria/90 backdrop-blur-sm rounded-2xl shadow-2xl p-8 flex flex-col text-center max-w-md w-full border border-secundaria/20">
+        <div class="relative group mb-6">
+            <img src="img/star.svg" alt="Estrela" class="w-16 h-16 transition-transform duration-300 hover:animate-acao animate-flutuar">
+        </div>
+        <h1 class="font-semibold text-3xl mb-4 text-detalhe">Obrigado pela avaliação!</h1>
+        <p class="text-secundaria text-lg mb-8">Sua opinião nos ajuda a aprimorar nossos produtos constantemente.</p>
+
+        <div class="flex justify-center space-x-4 mb-8">
+            <div class="w-2 h-2 rounded-full bg-detalhe animate-pulse"></div>
+            <div class="w-2 h-2 rounded-full bg-detalhe animate-pulse" style="animation-delay: 0.2s"></div>
+            <div class="w-2 h-2 rounded-full bg-detalhe animate-pulse" style="animation-delay: 0.4s"></div>
+        </div>
+
+        <a href="index.html" aria-label="Voltar para a página inicial" class="text-lg px-6 py-3 rounded-full flex justify-center bg-fundo hover:bg-detalhe hover:text-fundo transition-all duration-300 font-semibold hover:shadow-lg hover:shadow-detalhe/30 hover:scale-105">Voltar</a>
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const buttons = document.querySelectorAll(".evento");
+
+            buttons.forEach(button => {
+                button.addEventListener("click", () => {
+                    buttons.forEach(btn => {
+                        btn.classList.remove("bg-detalhe", "text-fundo", "scale-105");
+                        btn.classList.add("bg-fundo");
+                    });
+                    button.classList.remove("bg-fundo");
+                    button.classList.add("bg-detalhe", "text-fundo", "scale-105");
+                });
+            });
+        });
+    </script>
+    
+</body>
+</html>
